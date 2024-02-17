@@ -1,160 +1,124 @@
-# File: main.yml
-# Description: The file configures GitHub Actions for automated builds and deployments, detailing steps from code checkout to deployment. It ensures systematic workflows for pushes or pull requests, enhancing the CI/CD pipeline efficiency within GitHub's ecosystem.
-# Author(s): Timothy Smith <smithtimothy233@protonmail.com>
-# Copyright: (c) HomelabTim.
-
-# Table of Contents
-
-# 01 - Triggers
-# 02 - Jobs
-# 02.1 - Build Job
-# 02.2 - Deploy to Staging Job
-# 02.3 - Deploy to Production Job
-
 name: MyWebsite CI/CD
 
-# 01 - Triggers
-
 on:
-    push:
-        branches: [ staging, main ]
-    workflow_dispatch:
-
-# 02 - Jobs
+  push:
+    branches:
+      - staging
+      - main
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    # 02.1 - Build Job
+      - name: Create gh-actions directory
+        run: |
+          mkdir -p gh-actions
+          ls -l  # Debugging step: List contents of the current directory
+          ls -l gh-actions  # Debugging step: List contents of gh-actions directory
 
-    build:
-        runs-on: ubuntu-latest
-        steps:
-            - name: "Checkout repository"
-              uses: actions/checkout@v3
-            
-            - name: "Install Node"
-              uses: actions/setup-node@v3
-              with:
-                  node-version: "18.x"
-                  check-latest: true
+      - name: Copy files to gh-actions directory
+        run: |
+          find . -mindepth 1 -maxdepth 1 -not -name 'gh-actions' -exec cp -r {} gh-actions/ \;
 
-            - name: "Install dependencies"
-              run: npm ci
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: gh-actions
 
-            - name: "Build"
-              run: |
-                  if [ "${{ github.ref }}" == "refs/heads/staging" ]; then
-                      npm run build:staging
-                  else
-                      npm run build:production
-                  fi
+  deploy-staging:
+    if: github.event.ref == 'refs/heads/staging'
+    environment: STAGING
+    runs-on: [self-hosted, homelabtim, staging]
+    needs: build
+    env:
+      DOMAIN: ${{ vars.DOMAIN }}
+      PORT: ${{ vars.PORT }}
+    steps:
+      - name: Cleanup build folder
+        run: |
+          ls -la ./
+          rm -rf ./* || true
+          rm -rf ./.??* || true
+          ls -la ./
 
-            - name: Add website to build artifact
-              uses: actions/upload-artifact@v3
-              with:
-                  name: dist
-                  path: dist
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
 
-            - name: Add nginx config to build artifact
-              uses: actions/upload-artifact@v3
-              with:
-                  name: nginx
-                  path: nginx.conf
+      - name: Download NGINX config
+        uses: actions/download-artifact@v3
+        with:
+          name: nginx
 
-    # 02.2 - Deploy to Staging Job
+      - name: Set NGINX config
+        run: |
+          sed -i "s/{{DOMAIN}}/$DOMAIN/" nginx.conf
+          sed -i "s/{{PORT}}/$PORT/" nginx.conf
 
-    deploy-staging:
-        if: github.event.ref == 'refs/heads/staging'
-        environment: STAGING
-        runs-on: [self-hosted, homelabtim, staging]
-        needs: build
-        env:
-            DOMAIN: ${{ vars.DOMAIN }}
-            PORT: ${{ vars.PORT }}
-        steps:
-            - name: Cleanup build folder
-              run: |
-                  ls -la ./
-                  rm -rf ./* || true
-                  rm -rf ./.??* || true
-                  ls -la ./
+          cat nginx.conf > /etc/nginx/sites-available/$DOMAIN
 
-            - name: Download build artifact
-              uses: actions/download-artifact@v3
-              with:
-                  name: dist
+          if [ ! -L /etc/nginx/sites-enabled/$DOMAIN ] ; then
+            ln -s /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/
+          fi
 
-            - name: Download NGINX config
-              uses: actions/download-artifact@v3
-              with:
-                  name: nginx
+      - name: Hot Reload NGINX
+        run: /etc/init.d/nginx reload
 
-            - name: Set NGINX config
-              run: |
-                  sed -i "s/{{DOMAIN}}/$DOMAIN/" nginx.conf
-                  sed -i "s/{{PORT}}/$PORT/" nginx.conf
+      - name: Deploy to NGINX
+        run: |
+          rm -rf /var/www/$DOMAIN
+          cp -r ./ /var/www/$DOMAIN
 
-                  cat nginx.conf > /etc/nginx/sites-available/$DOMAIN
+  deploy-production:
+    if: github.event.ref == 'refs/heads/main'
+    environment: PRODUCTION
+    runs-on: [self-hosted, homelabtim, production, "${{ matrix.runner }}"]
+    strategy:
+      max-parallel: 1
+      matrix:
+        runner: [server-1, server-2, server-3]
+    needs: build
+    env:
+      DOMAIN: ${{ vars.DOMAIN }}
+      PORT: ${{ vars.PORT }}
+    steps:
+      - name: Cleanup build folder
+        run: |
+          ls -la ./
+          rm -rf ./* || true
+          rm -rf ./.??* || true
+          ls -la ./
 
-                  if [ ! -L /etc/nginx/sites-enabled/$DOMAIN ] ; then
-                    ln -s /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/
-                  fi
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
 
-            - name: Hot Reload NGINX
-              run: /etc/init.d/nginx reload
+      - name: Download NGINX config
+        uses: actions/download-artifact@v3
+        with:
+          name: nginx
 
-            - name: Deploy to NGINX
-              run: |
-                  rm -rf /var/www/$DOMAIN
-                  cp -r ./ /var/www/$DOMAIN
+      - name: Set NGINX config
+        run: |
+          sed -i "s/{{DOMAIN}}/$DOMAIN/" nginx.conf
+          sed -i "s/{{PORT}}/$PORT/" nginx.conf
 
-    # 02.3 - Deploy to Production Job
+          cat nginx.conf > /etc/nginx/sites-available/$DOMAIN
 
-    deploy-production:
-        if: github.event.ref == 'refs/heads/main'
-        environment: PRODUCTION
-        runs-on: [self-hosted, homelabtim, production, "${{ matrix.runner }}"]
-        strategy:
-            max-parallel: 1
-            matrix:
-                runner: [server-1, server-2, server-3]
-        needs: build
-        env:
-            DOMAIN: ${{ vars.DOMAIN }}
-            PORT: ${{ vars.PORT }}
-        steps:
-            - name: Cleanup build folder
-              run: |
-                  ls -la ./
-                  rm -rf ./* || true
-                  rm -rf ./.??* || true
-                  ls -la ./
+          if [ ! -L /etc/nginx/sites-enabled/$DOMAIN ] ; then
+            ln -s /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/
+          fi
 
-            - name: Download build artifact
-              uses: actions/download-artifact@v3
-              with:
-                  name: dist
+      - name: Hot Reload NGINX
+        run: /etc/init.d/nginx reload
 
-            - name: Download NGINX config
-              uses: actions/download-artifact@v3
-              with:
-                  name: nginx
-
-            - name: Set NGINX config
-              run : |
-                  sed -i "s/{{DOMAIN}}/$DOMAIN/" nginx.conf
-                  sed -i "s/{{PORT}}/$PORT/" nginx.conf
-
-                  cat nginx.conf > /etc/nginx/sites-available/$DOMAIN
-
-                  if [ ! -L /etc/nginx/sites-enabled/$DOMAIN ] ; then
-                    ln -s /etc/nginx/sites-available/$DOMAIN /etc/nginx/sites-enabled/
-                  fi
-
-            - name: Hot Reload NGINX
-              run: /etc/init.d/nginx reload
-
-            - name: Deploy to NGINX
-              run: |
-                  rm -rf /var/www/$DOMAIN
-                  cp -r ./ /var/www/$DOMAIN
+      - name: Deploy to NGINX
+        run: |
+          rm -rf /var/www/$DOMAIN
+          cp -r ./ /var/www/$DOMAIN
