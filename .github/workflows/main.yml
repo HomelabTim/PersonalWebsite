@@ -87,7 +87,7 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        runner: [server-1, server-2, server-3]
+        runner: [server-1]
     needs: build
     env:
       DOMAIN: ${{ vars.DOMAIN }}
