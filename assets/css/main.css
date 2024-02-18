@@ -4240,4 +4240,68 @@ img {
     max-width: 100%;
 }
 
-/* Your existing CSS for other elements */
+
+
+
+
+/* Footer CSS */
+@media only screen and (min-width: 0rem) {
+    #cs-footer-1185 {
+        padding: var(--sectionPadding);
+        padding-top: clamp(7.5rem, 15vw, 12.5rem);
+        position: relative;
+    }
+
+    #cs-footer-1185 .cs-container {
+        width: 100%;
+        max-width: 80rem;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 2.5rem; /* Adjust gap between sections */
+    }
+
+    #cs-footer-1185 .cs-logo-group {
+        width: 100%;
+        max-width: 20rem; /* Adjust width of the logo and text section */
+        position: relative;
+    }
+
+    #cs-footer-1185 .cs-nav,
+    #cs-footer-1185 .cs-contact {
+        display: flex;
+        flex-direction: column;
+        list-style: none; /* Remove bullet points */
+        padding: 0; /* Remove default padding */
+        margin: 0; /* Remove default margin */
+    }
+
+    #cs-footer-1185 .cs-header {
+        font-size: 1rem;
+        line-height: 1.2em;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        color: var(--bodyTextColorWhite);
+    }
+
+    #cs-footer-1185 .cs-nav-link {
+        font-size: 1rem;
+        text-decoration: none;
+        line-height: 1.5em;
+        color: var(--bodyTextColorWhite);
+        transition: color 0.3s;
+    }
+
+    #cs-footer-1185 .cs-nav-link:hover {
+        color: var(--secondary);
+    }
+
+    #cs-footer-1185 .cs-icon {
+        width: 1.5rem;
+        height: auto;
+        margin-right: 0.75rem;
+    }
+}
