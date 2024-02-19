@@ -1982,7 +1982,7 @@
 			input[type="button"].alt:hover,
 			button.alt:hover,
 			.button.alt:hover {
-				background-color: rgba(255, 255, 255, 0.075);
+				background-color: #693dcc;
 			}
 
 			input[type="submit"].alt:active,
@@ -2015,7 +2015,7 @@
 			input[type="button"].special:hover,
 			button.special:hover,
 			.button.special:hover {
-				background-color: #082d4f;
+				background-color: #693dcc; /*not sure*/
 			}
 
 			input[type="submit"].special:active,
@@ -2023,7 +2023,7 @@
 			input[type="button"].special:active,
 			button.special:active,
 			.button.special:active {
-				background-color: #041321;
+				background-color: #693dcc; /*not sure*/
 			}
 
 /* Flex */
@@ -2682,7 +2682,7 @@
 		}
 
 			ul.tab-list li a.active {
-				background: #aa14cc;
+				background: #00abed;
 				color: #fff !important;
 			}
 
@@ -4245,6 +4245,23 @@ img {
 
 
 /* Footer CSS */
+@media only screen and (max-width: 767px) {
+    #cs-footer-1185 .cs-container {
+        flex-direction: column; /* Change layout to stack sections vertically */
+    }
+
+    #cs-footer-1185 .cs-logo-group {
+        width: 100%; /* Occupy full width on smaller screens */
+        max-width: none; /* Reset max-width */
+        margin-top: 0px; /* Reset margin-top */
+    }
+
+    #cs-footer-1185 .cs-nav,
+    #cs-footer-1185 .cs-contact {
+        margin-top: 2.5rem; /* Add space between sections */
+    }
+}
+
 @media only screen and (min-width: 0rem) {
     #cs-footer-1185 {
         padding: var(--sectionPadding);
@@ -4267,6 +4284,13 @@ img {
         width: 100%;
         max-width: 20rem; /* Adjust width of the logo and text section */
         position: relative;
+		height: auto;
+		margin-top: -100px;
+    }
+
+	#cs-footer-1185 .cs-logo-img {
+        width: 150px;
+        height: auto;
     }
 
     #cs-footer-1185 .cs-nav,
