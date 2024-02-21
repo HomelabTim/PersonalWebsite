@@ -11,23 +11,139 @@
 	</head>
 	<body>
 
-		<!-- Header -->
-			<header id="header">
-				<h1><img id="logo" src="images/logo.png" alt=""></h1>
-				<a href="#menu">Menu</a>
-			</header>
+<!-- ============================================ -->
+<!--                 Navigation                   -->
+<!-- ============================================ -->
 
-		<!-- Nav -->
-			<nav id="menu">
-				<ul class="links">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="index.html">About Me</a></li>
-					<li><a href="index.html">Skills</a></li>
-					<li><a href="index.html">Portfolio</a></li>
-					<li><a href="index.html">Connect With Me</a></li>
-				</ul>
-			</nav>
-
+<header id="cs-navigation">
+    <div class="cs-top-bar">
+        <div class="cs-top-container">
+            <div class="cs-top-contact">
+                <a href="tel:830-584-5646" class="cs-top-link">
+                    <img class="cs-icon" aria-hidden="true" loading="lazy" decoding="async" src="https://csimg.nyc3.digitaloceanspaces.com/Contact-Page/phone-stroke.svg" alt="phone" width="24" height="24">
+					Call Me: +1 (830) 584 - 5646
+                </a>
+                <a href="mailto:smithtimothy233@pm.me" class="cs-top-link">
+                    <img class="cs-icon" aria-hidden="true" loading="lazy" decoding="async" src="https://csimg.nyc3.digitaloceanspaces.com/Contact-Page/email-stroke.svg" alt="email" width="24" height="24">
+                    Email Me: smithtimothy233@pm.me
+                </a>
+            </div>
+            <div class="cs-top-social">
+                <a href="https://www.linkedin.com/in/HomelabTim/" class="cs-social-link">
+					<i class="cs-social-icon fab fa-linkedin" alt="logo" width="12" height="12" aria-hidden="true" decoding="async"></i>
+				</a>
+                <a href="https://www.youtube.com/@HomelabTim?sub_confirmation=1" class="cs-social-link">
+					<i class="cs-social-icon fab fa-youtube" alt="logo" width="12" height="12" aria-hidden="true" decoding="async"></i>
+				</a>
+                <a href="https://github.com/HomelabTim" class="cs-social-link">
+					<i class="cs-social-icon fab fa-github" alt="logo" width="12" height="12" aria-hidden="true" decoding="async"></i>
+				</a>
+				<a href="https://discordapp.com/users/917686720965787679" class="cs-social-link">
+					<i class="cs-social-icon fab fa-discord" alt="logo" width="12" height="12" aria-hidden="true" decoding="async"></i>
+				</a>
+				<a href="https://www.reddit.com/user/HomelabTim/" class="cs-social-link">
+					<i class="cs-social-icon fab fa-reddit" alt="logo" width="12" height="12" aria-hidden="true" decoding="async"></i>
+				</a>
+				<a href="https://www.twitch.tv/magicalxmonkey23" class="cs-social-link">
+					<i class="cs-social-icon fab fa-twitch" alt="logo" width="12" height="12" aria-hidden="true" decoding="async"></i>
+				</a>
+				<a href="https://steamcommunity.com/profiles/76561198262647613" class="cs-social-link">
+					<i class="cs-social-icon fab fa-steam" alt="logo" width="12" height="12" aria-hidden="true" decoding="async"></i>
+				</a>
+				<a href="https://checkout.square.site/merchant/ML5MY0TGXDPHX/checkout/IBWBJJIYZ4TIJZCODI5QOSJW" class="cs-social-link">
+					<i class="cs-social-icon fab fa-squarespace" alt="logo" width="12" height="12" aria-hidden="true" decoding="async"></i>
+				</a>
+				<a href="https://cash.app/$HomelabTim" class="cs-social-link">
+					<i class="cs-social-icon fas fa-dollar-sign" alt="logo" width="12" height="12" aria-hidden="true" decoding="async"></i>
+				</a>
+            </div>
+        </div>
+    </div>
+    <div class="cs-container">
+        <!--Nav Logo-->
+        <a href="index.html" class="cs-logo" aria-label="back to home">
+            <img src="images/logonotext.png" alt="logo" width="197" height="43" aria-hidden="true" decoding="async">
+        </a>
+        <!--Navigation List-->
+        <nav class="cs-nav" role="navigation">
+            <!--Mobile Nav Toggle-->
+            <button class="cs-toggle" aria-label="mobile menu toggle">
+                <div class="cs-box" aria-hidden="true">
+                    <span class="cs-line cs-line1" aria-hidden="true"></span>
+                    <span class="cs-line cs-line2" aria-hidden="true"></span>
+                    <span class="cs-line cs-line3" aria-hidden="true"></span>
+                </div>
+            </button>
+            <!-- We need a wrapper div so we can set a fixed height on the cs-ul in case the nav list gets too long from too many dropdowns being opened and needs to have an overflow scroll. This wrapper acts as the background so it can go the full height of the screen and not cut off any overflowing nav items while the cs-ul stops short of the bottom of the screen, which keeps all nav items in view no matter how mnay there are-->
+            <div class="cs-ul-wrapper">
+                <ul id="cs-expanded" class="cs-ul" aria-expanded="false">
+                    <li class="cs-li">
+                        <a href="index.html" class="cs-li-link">
+                            Home
+                        </a>
+                    </li>
+                    <li class="cs-li">
+                        <a href="index.html#About" class="cs-li-link">
+                            About
+                        </a>
+                    </li>
+                    <li class="cs-li">
+                        <a href="index.html#Skills" class="cs-li-link">
+                            Skills
+                        </a>
+                    </li>
+					<!--Copy and paste this cs-dropdown list item and replace any .cs-li with this cs-dropdown group to make a new dropdown and it will work-->
+                    <li class="cs-li cs-dropdown" tabindex="0">
+                        <span class="cs-li-link">
+                            Portfolio
+                            <img class="cs-drop-icon" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Icons/chev-down.svg" alt="dropdown icon" width="15" height="15" decoding="async" aria-hidden="true">
+                        </span>
+                        <ul class="cs-drop-ul">
+                            <li class="cs-drop-li">
+                                <a href="#" class="cs-li-link cs-drop-link" id="collegeProjectsLink">College Projects</a>
+                            </li>
+                            <li class="cs-drop-li">
+                                <a href="" class="cs-li-link cs-drop-link">Kasm Projects</a>
+                            </li>
+							<li class="cs-drop-li">
+                                <a href="" class="cs-li-link cs-drop-link">AIMG Projects</a>
+                            </li>
+							<li class="cs-drop-li">
+                                <a href="" class="cs-li-link cs-drop-link">Personal Projects</a>
+                            </li>
+							<li class="cs-drop-li">
+                                <a href="" class="cs-li-link cs-drop-link">Automation</a>
+                            </li>
+							<li class="cs-drop-li">
+                                <a href="" class="cs-li-link cs-drop-link">File Systems</a>
+                            </li>
+							<li class="cs-drop-li">
+                                <a href="" class="cs-li-link cs-drop-link">General Tech and Knowledge</a>
+                            </li>
+							<li class="cs-drop-li">
+                                <a href="" class="cs-li-link cs-drop-link">Networking and Servers</a>
+                            </li>
+							<li class="cs-drop-li">
+                                <a href="" class="cs-li-link cs-drop-link">Software and Tools</a>
+                            </li>
+							<li class="cs-drop-li">
+                                <a href="" class="cs-li-link cs-drop-link">Tutorials and Guides</a>
+                            </li>
+							<li class="cs-drop-li">
+                                <a href="" class="cs-li-link cs-drop-link">Virtualization</a>
+                            </li>
+							<li class="cs-drop-li">
+                                <a href="" class="cs-li-link cs-drop-link">Web Development</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <a href="index.html#Contact" class="cs-button-solid cs-nav-button">Connect With Me</a>
+    </div>
+</header>
+                                
 			<!-- Banner -->
 			<!--
 				To use a video as your background, set data-video to the name of your video without
@@ -51,7 +167,7 @@
 			<!-- About Me -->
 			<section class="wrapper style1">
 				<div class="inner">
-					<section id="reviews-56">
+					<section id="About">
 						<div class="cs-container">
 							<picture class="cs-picture">
 								<img aria-hidden="true" loading="lazy" decoding="async" src="images/selfie_1.png" alt="man smiling">
@@ -85,47 +201,47 @@
 						<p>Below are the top six skills in which I excel. These abilities have been cultivated through practice and experience.</p>
 					</header>
 			
-					<section id="services-596">
+					<section id="Skills">
 						<div class="cs-container">
 							<ul class="cs-card-group">
 								<li class="cs-item">
 									<i class="fas fa-server fa-5x"></i>
-									<h3 class="cs-h3">Linux System Administration</h3>
+									<h3 class="cs-topper">Linux System Administration</h3>
 									<p class="cs-item-text">
 										Through effective management of Linux-based servers and services, I ensured optimal performance, reliability, and security.
 									</p>
 								</li>
 								<li class="cs-item">
 									<i class="fab fa-docker fa-5x"></i>
-									<h3 class="cs-h3">Containerization and Orchestration</h3>
+									<h3 class="cs-topper">Containerization and Orchestration</h3>
 									<p class="cs-item-text">
 										Utilizing containerization tools like Docker and orchestration platforms like Kubernetes, I streamlined deployment and management of applications.
 									</p>
 								</li>
 								<li class="cs-item">
 									<i class="fas fa-code fa-5x"></i>
-									<h3 class="cs-h3">Web Development</h3>
+									<h3 class="cs-topper">Web Development</h3>
 									<p class="cs-item-text">
 										My expertise in web development, showcased in many projects enabled me to create engaging and functional web experiences. By leveraging HTML, CSS, JavaScript, and CMS platforms like Ghost.
 									</p>
 								</li>
 								<li class="cs-item">
 									<i class="fas fa-network-wired fa-5x"></i>
-									<h3 class="cs-h3">Networking</h3>
+									<h3 class="cs-topper">Networking</h3>
 									<p class="cs-item-text">
 										My networking skills enabled me to design and implement robust network infrastructures. This included configuring services like reverse proxies and VPNs to ensure secure and efficient communication.
 									</p>
 								</li>
 								<li class="cs-item">
 									<i class="fas fa-code-branch fa-5x"></i>
-									<h3 class="cs-h3">Version Control (Git)</h3>
+									<h3 class="cs-topper">Version Control (Git)</h3>
 									<p class="cs-item-text">
 										My proficiency in version control is exemplified through collaborative development and streamlined code management. I utilized Git repositories on platforms like GitHub, and enabled efficient tracking of changes as well as seamless collaboration among my team members.
 									</p>
 								</li>
 								<li class="cs-item">
 									<i class="fas fa-shield-alt fa-5x"></i>
-									<h3 class="cs-h3">Cybersecurity Awareness and Implementation</h3>
+									<h3 class="cs-topper">Cybersecurity Awareness and Implementation</h3>
 									<p class="cs-item-text">
 										I demonstrated a strong understanding of cybersecurity principles and implementation techniques by effectively implementing encryption, secure networking protocols, and best practices for data protection.
 									</p>
@@ -138,7 +254,7 @@
 			
 
 			<!-- Portfolio -->
-				<section class="wrapper style2">
+				<section id="portfolioSection" class="wrapper style2">
 					<div class="inner">
 						<header>
 							<h2>My Portfolio</h2>
@@ -1000,10 +1116,10 @@
 				</section>
 			</div>
 
-			<footer id="cs-footer-1185">
+			<footer id="Contact">
 				<div class="cs-container">
 					<div class="cs-logo-group">
-						<a aria-label="go back to home" class="cs-logo" href="">
+						<a aria-label="go back to home" class="cs-logo" href="index.html">
 							<img class="cs-logo-img" aria-hidden="true" loading="lazy" decoding="async" src="images/logonotext.png" alt="logo">
 						</a>
 						<p class="cs-text">
@@ -1015,16 +1131,16 @@
 							<span class="cs-header">Quick Links</span>
 						</li>
 						<li class="cs-nav-li">
-							<a class="cs-nav-link" href="">Home</a>
+							<a class="cs-nav-link" href="index.html">Home</a>
 						</li>
 						<li class="cs-nav-li">
-							<a class="cs-nav-link" href="">About Me</a>
+							<a class="cs-nav-link" href="index.html#About">About Me</a>
 						</li>
 						<li class="cs-nav-li">
-							<a class="cs-nav-link" href="">Skills</a>
+							<a class="cs-nav-link" href="index.html#Skills">Skills</a>
 						</li>
 						<li class="cs-nav-li">
-							<a class="cs-nav-link" href="">Portfolio</a>
+							<a class="cs-nav-link" href="index.html#Portfolio">Portfolio</a>
 						</li>
 					</ul>
 					<ul class="cs-nav">
@@ -1079,7 +1195,7 @@
 						</li>
 						<li class="cs-nav-li">
 							<img class="cs-icon" aria-hidden="true" loading="lazy" decoding="async" src="https://csimg.nyc3.digitaloceanspaces.com/Contact-Page/phone-stroke.svg" alt="phone" width="24" height="24">
-							<a class="cs-nav-link cs-phone" href="tel:830-584-5646">+1 (830)584-5646
+							<a class="cs-nav-link cs-phone" href="tel:830-584-5646">+1 (830) 584 - 5646
 							</a>
 						</li>
 						<li class="cs-nav-li">
