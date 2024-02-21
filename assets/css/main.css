@@ -1645,6 +1645,7 @@
 		-ms-transition: color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out;
 		text-decoration: none;
+		color: #693dcc;
 	}
 
 	strong, b {
@@ -2913,7 +2914,7 @@
 					.wrapper.style1 input[type="button"].alt:hover,
 					.wrapper.style1 button.alt:hover,
 					.wrapper.style1 .button.alt:hover {
-						background-color: rgba(255, 255, 255, 0.075);
+						background-color: #693dcc;
 					}
 
 					.wrapper.style1 input[type="submit"].alt:active,
@@ -3938,7 +3939,7 @@
         width: 100%;
     }
     #reviews-56 .cs-picture {
-        width: 98%;
+        width: 100%;
         margin: 0;
         position: relative;
         display: block;
@@ -3951,7 +3952,7 @@
         content: "";
         position: absolute;
         height: 12.125rem;
-        width: 12.125rem;
+        width: 15rem;
         background: var(--primaryLight);
         opacity: 1;
         /* -8px to -12px */
@@ -3963,8 +3964,8 @@
         position: absolute;
         top: 0;
         left: 0;
-        height: 80%;
-        width: 80%;
+        height: auto;
+        width: auto;
         object-fit: cover;
     }
 }
