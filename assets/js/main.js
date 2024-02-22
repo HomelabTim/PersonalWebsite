@@ -238,24 +238,69 @@ document.getElementById('dark-mode-toggle').addEventListener('click', () => {
 	// on click, check localStorage for the dark mode value, use to apply the opposite of what's saved
 	localStorage.getItem('theme') === 'light' ? enableDarkMode() : disableDarkMode();
 });
-                                
 
-// Links to Portfolio //
+// New Portfolio Section // 
 
-document.addEventListener("DOMContentLoaded", function() {
-    // Get the link element
-    var collegeProjectsLink = document.getElementById('collegeProjectsLink');
-    
-    // Add click event listener to the link
-    collegeProjectsLink.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevent default link behavior
+document.addEventListener('DOMContentLoaded', function () {
+    // Function to scroll the container left by one blog post width
+    function scrollLeft() {
+      const blogContainer = document.querySelector('#new_portfolio .cs-card-group');
+      blogContainer.scrollBy({
+        left: -blogContainer.offsetWidth,
+        behavior: 'smooth'
+      });
+    }
+  
+    // Function to scroll the container right by one blog post width
+    function scrollRight() {
+      const blogContainer = document.querySelector('#new_portfolio .cs-card-group');
+      blogContainer.scrollBy({
+        left: blogContainer.offsetWidth,
+        behavior: 'smooth'
+      });
+    }
 
-        // Scroll to the portfolio section
-        var portfolioSection = document.getElementById('portfolioSection');
-        portfolioSection.scrollIntoView({ behavior: 'smooth' });
+    // Add event listeners to scroll left and right
+    function addScrollEventListeners() {
+      document.querySelector('.cs-carousel-button-left').addEventListener('click', scrollLeft);
+      document.querySelector('.cs-carousel-button-right').addEventListener('click', scrollRight);
+    }
 
-        // Activate the "College Projects" tab
-        var collegeprojectstab = document.querySelector('[data-tab="tab-2"]');
-        collegeprojectstab.click();
+    // Add event listeners initially
+    addScrollEventListeners();
+  
+    // Dropdown menu for filtering categories
+    const categoryDropdown = document.querySelector('#category-dropdown');
+  
+    categoryDropdown.addEventListener('change', function () {
+      const selectedCategory = this.value;
+  
+      // Loop through blog post items and hide/show based on category
+      document.querySelectorAll('.cs-category').forEach(function (category) {
+        const parentItem = category.closest('.cs-item');
+        if (selectedCategory === 'all' || category.textContent.trim().toLowerCase() === selectedCategory.toLowerCase()) {
+          parentItem.style.display = 'flex';
+        } else {
+          parentItem.style.display = 'none';
+        }
+      });
+    });
+
+    // Function to handle window resize event
+    window.addEventListener('resize', function () {
+      // Check if the arrows should be shown or hidden based on screen width
+      const screenWidth = window.innerWidth;
+      const arrows = document.querySelectorAll('.cs-carousel-button');
+      if (screenWidth <= 1640) {
+        arrows.forEach(function (arrow) {
+          arrow.style.display = 'none';
+        });
+      } else {
+        arrows.forEach(function (arrow) {
+          arrow.style.display = 'block';
+        });
+        // Reattach event listeners for scrolling when arrows are visible
+        addScrollEventListeners();
+      }
     });
 });
