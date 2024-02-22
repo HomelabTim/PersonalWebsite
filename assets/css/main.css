@@ -2196,6 +2196,16 @@ body {
 		margin: 0 0 1em 0;
 	}
 
+	input[type="text"]:hover,
+	input[type="password"]:hover,
+	input[type="email"]:hover,
+	select:hover,
+	textarea:hover {
+		/* Define your hover color */
+		background-color: var(--secondary); /* Example color */
+	}
+
+
 	input[type="text"],
 	input[type="password"],
 	input[type="email"],
@@ -2214,6 +2224,10 @@ body {
 		padding: 0 1em;
 		text-decoration: none;
 		width: 100%;
+		text-align: center;
+		margin-top: 30px;
+		color: #FFFFFF;
+		background-color: var(--primary);
 	}
 
 		input[type="text"]:invalid,
@@ -2360,7 +2374,6 @@ body {
 	input[type="email"],
 	select,
 	textarea {
-		background: rgba(255, 255, 255, 0.075);
 		border-color: rgba(255, 255, 255, 0.15);
 	}
 
@@ -3800,6 +3813,7 @@ body {
 				#banner h1 {
 					font-size: 1.75em;
 					margin-bottom: 0.5em;
+					margin-top: 100px;
 					padding-bottom: 0;
 				}
 
@@ -5317,3 +5331,333 @@ img {
 	}
   }
 								  
+
+/* New Portfolio Section */
+
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #new_portfolio {
+        padding: var(--sectionPadding);
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+    #new_portfolio .cs-container {
+        width: 100%;
+        /* changes to 1280px on desktop */
+        max-width: 43.75rem;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /* 48px - 64px */
+        gap: clamp(3rem, 6vw, 4rem);
+    }
+    #new_portfolio .cs-content {
+        /* set text align to left if content needs to be left aligned */
+        text-align: center;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        /* centers content horizontally, set to flex-start to left align */
+        align-items: center;
+    }
+
+    #new_portfolio .cs-title {
+        max-width: 20ch;
+    }
+    #new_portfolio .cs-topper {
+        color: var(--secondary);
+    }
+    #new_portfolio .cs-card-group {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 1rem;
+    }
+    #new_portfolio .cs-item {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        grid-column: span 12;
+    }
+    #new_portfolio .cs-item:hover .cs-h3,
+    #new_portfolio .cs-item:hover .cs-date,
+    #new_portfolio .cs-item:hover .cs-category {
+        color: #fff;
+    }
+    #new_portfolio .cs-item:hover .cs-item-text {
+        background-color: var(--secondary);
+    }
+    #new_portfolio .cs-item:hover .cs-icon-wrapper {
+        border-color: #fff;
+    }
+    #new_portfolio .cs-item:hover .cs-icon,
+    #new_portfolio .cs-item:hover .cs-date-icon {
+        filter: brightness(1000%) grayscale(1);
+    }
+    #new_portfolio .cs-item:hover .cs-icon {
+        transform: rotate(45deg);
+    }
+    #new_portfolio .cs-item:hover .cs-category::before {
+        background-color: #fff;
+        opacity: 0.2;
+    }
+    #new_portfolio .cs-link {
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        /* if one card has more content then the others, the card will stretch to fill the parent container */
+        flex-grow: 1;
+        gap: 1rem;
+    }
+    #new_portfolio .cs-picture {
+        width: 100%;
+        height: 20rem;
+        margin: 0;
+        border-radius: 1.5rem;
+        display: block;
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+    }
+    #new_portfolio .cs-picture img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    #new_portfolio .cs-item-text {
+        padding: 1.25rem;
+        background-color: #f7f7f7;
+        border-radius: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /* makes the item text the element that grows to fill the container */
+        flex-grow: 1;
+        transition: background-color 0.3s;
+    }
+    #new_portfolio .cs-h3 {
+        /* 20px - 25px */
+        font-size: clamp(1.25rem, 1.8vw, 1.5625rem);
+        line-height: 1.2em;
+        text-align: left;
+        margin: 0;
+        color: #1a1a1a;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+        transition: color 0.3s;
+    }
+    #new_portfolio .cs-icon-wrapper {
+        width: 3rem;
+        height: 3rem;
+        border: 1px solid #bababa;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* prevents the parent flexbox from shrinking the icon */
+        flex-shrink: 0;
+        transition: border-color 0.3s;
+    }
+    #new_portfolio .cs-icon {
+        width: auto;
+        height: 0.75rem;
+        transition:
+            filter 0.3s,
+            transform 0.3s;
+    }
+    #new_portfolio .cs-info {
+        margin: 1rem 0 0;
+        padding: 1rem 0 0;
+        border-top: 1px solid #e8e8e8;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    #new_portfolio .cs-date {
+        font-size: 1.2rem;
+        line-height: 1.5em;
+        text-align: left;
+        color: #1a1a1a;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: color 0.3s;
+    }
+    #new_portfolio .cs-date-icon {
+        width: auto;
+        height: 1.5rem;
+		filter: brightness(100%) grayscale(0);
+        transition: filter 0.3s;
+    }
+
+    #new_portfolio .cs-category {
+        font-size: 0.875rem;
+        /* centers the text if the category bullet has to span multiple lines */
+        text-align: center;
+        padding: 0.25rem 1rem;
+        color: #1a1a1a;
+        border-radius: 5rem;
+        position: relative;
+        z-index: 0;
+        overflow: hidden;
+    }
+    #new_portfolio .cs-category::before {
+        content: "";
+        width: 100%;
+        height: 100%;
+        background: #e8e8e8;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+}
+/* Tablet - 768px */
+@media only screen and (min-width: 48rem) {
+    #new_portfolio .cs-bubbles {
+        display: block;
+    }
+}
+/* Desktop - 1024px */
+@media only screen and (min-width: 64rem) {
+    #new_portfolio .cs-container {
+        max-width: 80rem;
+    }
+    #new_portfolio .cs-item {
+        grid-column: span 4;
+    }
+    #new_portfolio .cs-bubbles {
+        top: 17.5625rem;
+    }
+}
+/* Large Desktop - 1300px */
+@media only screen and (min-width: 81.25rem) {
+    #new_portfolio .cs-bubbles {
+        margin-right: -61.875rem;
+        right: 50%;
+    }
+}
+/* Dark Mode */
+@media only screen and (min-width: 0rem) {
+    body.dark-mode #new_portfolio .cs-topper {
+        color: var(--primaryLight);
+    }
+    body.dark-mode #new_portfolio .cs-title,
+    body.dark-mode #new_portfolio .cs-text,
+    body.dark-mode #new_portfolio .cs-h3,
+    body.dark-mode #new_portfolio .cs-date,
+    body.dark-mode #new_portfolio .cs-category {
+        color: var(--bodyTextColorWhite);
+    }
+    body.dark-mode #new_portfolio .cs-text,
+    body.dark-mode #new_portfolio .cs-date,
+    body.dark-mode #new_portfolio .cs-category {
+        opacity: 0.8;
+    }
+    body.dark-mode #new_portfolio .cs-item-text {
+        background-color: var(--medium);
+    }
+    body.dark-mode #new_portfolio .cs-category::before {
+        background-color: var(--primary);
+    }
+}
+
+/* Your existing CSS styles go here */
+
+#new_portfolio .cs-card-group {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex; /* Change grid to flex */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    scroll-snap-type: x mandatory; /* Enable snap scrolling */
+  }
+  
+  #new_portfolio .cs-item {
+    flex: 0 0 auto; /* Prevent flex items from shrinking */
+    margin-right: 1rem; /* Add spacing between items */
+    scroll-snap-align: start; /* Ensure items snap to start */
+  }
+
+  @media only screen and (max-width: 767px) {
+    /* Adjust the width of carousel items for mobile view */
+    #new_portfolio .cs-item {
+        flex: 0 0 calc(100% - .5rem); /* Set the width of each item to 100% minus the margin-right */
+    }
+}
+
+/* Adjust the width of carousel items for desktop view */
+@media only screen and (min-width: 1024px) {
+    #new_portfolio .cs-item {
+        flex: 0 0 calc((100% - 5rem) / 3); /* Set the width of each item to one-third of the container width minus the margin-right */
+        margin-right: 1rem; /* Add spacing between items */
+    }
+}
+
+        
+/* Styles for carousel control buttons */
+.cs-carousel-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 2;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.cs-carousel-button i {
+    font-size: 24px; /* Adjust size as needed */
+    color: #000; /* Adjust color as needed */
+    transition: color 0.3s;
+}
+
+/* Change button color on hover */
+.cs-carousel-button:hover i {
+    color: var(--primary);
+}
+
+/* Positioning the buttons */
+.cs-carousel-button-left {
+    left: 0;
+    transform: translateY(200%) translateX(500%);
+}
+
+.cs-carousel-button-right {
+    right: 0;
+    transform: translateY(200%) translateX(-500%);
+}
+
+/* Hide carousel control buttons on mobile screens */
+@media only screen and (max-width: 1640px) {
+    .cs-carousel-button-left,
+    .cs-carousel-button-right {
+        display: none;
+    }
+}
+
+/* Hide default scrollbar */
+#new_portfolio .cs-card-group {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+#new_portfolio .cs-card-group::-webkit-scrollbar {
+    display: none; /* WebKit */
+}
+
+/* CSS for hiding header on mobile devices */
+@media only screen and (max-width: 768px) {
+    #cs-navigation .cs-top-bar {
+        display: none;
+    }
+}
