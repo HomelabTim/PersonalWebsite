@@ -2008,14 +2008,6 @@ body {
 		color: #ffffff !important;
 	}
 
-		input[type="submit"]:hover,
-		input[type="reset"]:hover,
-		input[type="button"]:hover,
-		button:hover,
-		.button:hover {
-			background-color: #06243c;
-		}
-
 		input[type="submit"]:active,
 		input[type="reset"]:active,
 		input[type="button"]:active,
@@ -4314,7 +4306,7 @@ img {
 /* Footer CSS */
 @media only screen and (max-width: 767px) {
     #Contact .cs-container {
-        flex-direction: column; /* Change layout to stack sections vertically */
+        width: 100%; /* Stretch to both sides of the screen */
     }
 
     #Contact .cs-logo-group {
@@ -4337,11 +4329,11 @@ img {
     }
 
     #Contact .cs-container {
-        width: 100%;
+        /* width: 30%; Remove fixed width */
         max-width: 80rem;
         margin: auto;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: flex-start;
         flex-wrap: wrap;
         gap: 2.5rem; /* Adjust gap between sections */
@@ -4351,11 +4343,11 @@ img {
         width: 100%;
         max-width: 20rem; /* Adjust width of the logo and text section */
         position: relative;
-		height: auto;
-		margin-top: -100px;
+        height: auto;
+        margin-top: -100px;
     }
 
-	#Contact .cs-logo-img {
+    #Contact .cs-logo-img {
         width: 150px;
         height: auto;
     }
@@ -5424,9 +5416,9 @@ img {
         overflow: hidden;
     }
     #new_portfolio .cs-picture img {
-        width: 100%;
+        width: auto;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
         position: absolute;
         top: 0;
         left: 0;
@@ -5441,6 +5433,7 @@ img {
         /* makes the item text the element that grows to fill the container */
         flex-grow: 1;
         transition: background-color 0.3s;
+		margin-top: -3rem;
     }
     #new_portfolio .cs-h3 {
         /* 20px - 25px */
@@ -5616,25 +5609,27 @@ img {
 }
 
 .cs-carousel-button i {
-    font-size: 24px; /* Adjust size as needed */
-    color: #000; /* Adjust color as needed */
+    font-size: 60px; /* Adjust size as needed */
+    color: var(--primary); /* Adjust color as needed */
     transition: color 0.3s;
+	background: none;
 }
 
 /* Change button color on hover */
 .cs-carousel-button:hover i {
-    color: var(--primary);
+    color: var(--secondary);
+	background-color: transparent;
 }
 
 /* Positioning the buttons */
 .cs-carousel-button-left {
     left: 0;
-    transform: translateY(200%) translateX(500%);
+    transform: translateY(1100%) translateX(650%);
 }
 
 .cs-carousel-button-right {
     right: 0;
-    transform: translateY(200%) translateX(-500%);
+    transform: translateY(1100%) translateX(-650%);
 }
 
 /* Hide carousel control buttons on mobile screens */
