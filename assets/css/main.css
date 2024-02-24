@@ -2008,14 +2008,6 @@ body {
 		color: #ffffff !important;
 	}
 
-		input[type="submit"]:hover,
-		input[type="reset"]:hover,
-		input[type="button"]:hover,
-		button:hover,
-		.button:hover {
-			background-color: #06243c;
-		}
-
 		input[type="submit"]:active,
 		input[type="reset"]:active,
 		input[type="button"]:active,
@@ -5424,9 +5416,9 @@ img {
         overflow: hidden;
     }
     #new_portfolio .cs-picture img {
-        width: 100%;
+        width: auto;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
         position: absolute;
         top: 0;
         left: 0;
@@ -5441,6 +5433,7 @@ img {
         /* makes the item text the element that grows to fill the container */
         flex-grow: 1;
         transition: background-color 0.3s;
+		margin-top: -3rem;
     }
     #new_portfolio .cs-h3 {
         /* 20px - 25px */
@@ -5625,18 +5618,18 @@ img {
 /* Change button color on hover */
 .cs-carousel-button:hover i {
     color: var(--secondary);
-	background: none;
+	background-color: transparent;
 }
 
 /* Positioning the buttons */
 .cs-carousel-button-left {
     left: 0;
-    transform: translateY(1150%) translateX(650%);
+    transform: translateY(1100%) translateX(650%);
 }
 
 .cs-carousel-button-right {
     right: 0;
-    transform: translateY(1150%) translateX(-650%);
+    transform: translateY(1100%) translateX(-650%);
 }
 
 /* Hide carousel control buttons on mobile screens */
