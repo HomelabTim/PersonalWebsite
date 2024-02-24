@@ -1,9 +1,3 @@
-/*
-	Broadcast by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
-*/
-
 (function($) {
 
 	skel.breakpoints({
@@ -146,9 +140,6 @@
 
 })(jQuery);
 
-
-
-
 // add classes for mobile navigation toggling
 var CSbody = document.querySelector("body");
 const CSnavbarMenu = document.querySelector("#cs-navigation");
@@ -237,70 +228,4 @@ detectColorScheme();
 document.getElementById('dark-mode-toggle').addEventListener('click', () => {
 	// on click, check localStorage for the dark mode value, use to apply the opposite of what's saved
 	localStorage.getItem('theme') === 'light' ? enableDarkMode() : disableDarkMode();
-});
-
-// New Portfolio Section // 
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Function to scroll the container left by one blog post width
-    function scrollLeft() {
-      const blogContainer = document.querySelector('#new_portfolio .cs-card-group');
-      blogContainer.scrollBy({
-        left: -blogContainer.offsetWidth,
-        behavior: 'smooth'
-      });
-    }
-  
-    // Function to scroll the container right by one blog post width
-    function scrollRight() {
-      const blogContainer = document.querySelector('#new_portfolio .cs-card-group');
-      blogContainer.scrollBy({
-        left: blogContainer.offsetWidth,
-        behavior: 'smooth'
-      });
-    }
-
-    // Add event listeners to scroll left and right
-    function addScrollEventListeners() {
-      document.querySelector('.cs-carousel-button-left').addEventListener('click', scrollLeft);
-      document.querySelector('.cs-carousel-button-right').addEventListener('click', scrollRight);
-    }
-
-    // Add event listeners initially
-    addScrollEventListeners();
-  
-    // Dropdown menu for filtering categories
-    const categoryDropdown = document.querySelector('#category-dropdown');
-  
-    categoryDropdown.addEventListener('change', function () {
-      const selectedCategory = this.value;
-  
-      // Loop through blog post items and hide/show based on category
-      document.querySelectorAll('.cs-category').forEach(function (category) {
-        const parentItem = category.closest('.cs-item');
-        if (selectedCategory === 'all' || category.textContent.trim().toLowerCase() === selectedCategory.toLowerCase()) {
-          parentItem.style.display = 'flex';
-        } else {
-          parentItem.style.display = 'none';
-        }
-      });
-    });
-
-    // Function to handle window resize event
-    window.addEventListener('resize', function () {
-      // Check if the arrows should be shown or hidden based on screen width
-      const screenWidth = window.innerWidth;
-      const arrows = document.querySelectorAll('.cs-carousel-button');
-      if (screenWidth <= 1640) {
-        arrows.forEach(function (arrow) {
-          arrow.style.display = 'none';
-        });
-      } else {
-        arrows.forEach(function (arrow) {
-          arrow.style.display = 'block';
-        });
-        // Reattach event listeners for scrolling when arrows are visible
-        addScrollEventListeners();
-      }
-    });
 });
